@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,15 @@ namespace AOC.Resources
             }
 
             return input.ToArray();
+        }
+
+        public static async Task<string[]> GetInputFromPath(string path)
+        {
+            string result;
+            using (StreamReader reader = new StreamReader(path))
+                result = await reader.ReadToEndAsync();
+
+            return result.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
