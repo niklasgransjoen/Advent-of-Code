@@ -32,6 +32,12 @@ namespace AOC.Resources
             return input.ToArray();
         }
 
+        public static string GetLineInput()
+        {
+            Console.WriteLine("Please enter your input:");
+            return Console.ReadLine();
+        }
+
         public static async Task<string[]> GetInputFromPath(string path)
         {
             string result;
@@ -39,6 +45,13 @@ namespace AOC.Resources
                 result = await reader.ReadToEndAsync();
 
             return result.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public static async Task<string> GetLineFromPath(string path)
+        {
+            string result;
+            using (StreamReader reader = new StreamReader(path))
+                return await reader.ReadToEndAsync();
         }
     }
 }
