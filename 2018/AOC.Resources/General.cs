@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AOC.Resources
@@ -18,11 +16,9 @@ namespace AOC.Resources
             Console.WriteLine("Please enter your input:");
 
             List<string> input = new List<string>();
-            string line = string.Empty;
-
             while (true)
             {
-                line = Console.ReadLine();
+                string line = Console.ReadLine();
                 if (line == "/x")
                     break;
 
@@ -49,7 +45,6 @@ namespace AOC.Resources
 
         public static async Task<string> GetLineFromPath(string path)
         {
-            string result;
             using (StreamReader reader = new StreamReader(path))
                 return await reader.ReadToEndAsync();
         }
