@@ -34,6 +34,9 @@ namespace AOC.Resources
             return Console.ReadLine();
         }
 
+        /// <summary>
+        /// Reads the input of a file to a string array.
+        /// </summary>
         public static async Task<string[]> GetInputFromPath(string path)
         {
             string result;
@@ -43,6 +46,17 @@ namespace AOC.Resources
             return result.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
+        /// <summary>
+        /// Reads the input of a relative file to a string array.
+        /// </summary>
+        public static Task<string[]> GetInputFromRelativePath(string path)
+        {
+            return GetInputFromPath(@"..\..\..\input\" + path);
+        }
+
+        /// <summary>
+        /// Returns the contents of a file.
+        /// </summary>
         public static async Task<string> GetLineFromPath(string path)
         {
             using (StreamReader reader = new StreamReader(path))
