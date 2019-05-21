@@ -77,7 +77,7 @@ namespace day_9a
         private int previousMarble = 0;
         private int currentIndex = 0;
 
-        private IList<int> marbleChain;
+        private readonly IList<int> marbleChain;
 
         public Circle(int marbleCount)
         {

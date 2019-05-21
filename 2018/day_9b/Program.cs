@@ -11,10 +11,9 @@ namespace day_9b
     {
         private static void Main()
         {
-            int result = Task.Run(() =>
+            long result = Task.Run(() =>
             {
-                //string input = General.GetLineInput();
-                string input = "10;46";
+                string input = "486;7083300";
                 ParseInput(input, out int players, out int maxPoints);
 
                 return GetGameResult(players, maxPoints);
@@ -42,9 +41,9 @@ namespace day_9b
         /// <summary>
         /// Calculates the score of the winning elf in a game with known inputs.
         /// </summary>
-        private static int GetGameResult(int playerCount, int maxPoints)
+        private static long GetGameResult(int playerCount, int maxPoints)
         {
-            int[] playerScores = new int[playerCount];
+            long[] playerScores = new long[playerCount];
             int playerIndex = 0;
 
             MarbleChain marbleCircle = new MarbleChain(maxPoints);
@@ -67,137 +66,112 @@ namespace day_9b
     /// </summary>
     internal class MarbleChain
     {
-        private int previousMarble = 0;
         private int currentIndex = 0;
+        private readonly int[] removedMarbles;
 
-        private readonly Marble[] marbleChain;
-
+        /// <summary>
+        /// Creates a new marble chain.
+        /// </summary>
+        /// <param name="marbleCount">The total number of marbles in the chain/the value of the last marble.</param>
         public MarbleChain(int marbleCount)
         {
-            int chainSize = 1;
-            while (chainSize < marbleCount)
-                chainSize *= 2;
+            int capacity = (int)Math.Ceiling(marbleCount / 23d);
+            removedMarbles = new int[capacity];
 
-            chainSize *= 2;
+            FindRemovedMarbles(marbleCount);
+        }
 
-            // Construct the complete marble chain.
-            Marble[] completeChain = new Marble[chainSize];
-            for (int i = 0; i < chainSize / 2; i++)
-                completeChain[i * 2] = i;
+        #region Initialization
 
-            for (int i = 0; i < chainSize / 2; i++)
-                completeChain[i * 2 + 1] = completeChain[i];
+        /// <summary>
+        /// Finds the marbles to remove.
+        /// </summary>
+        /// <remarks>
+        ///
+        /// Takes base is the following sequence: https://oeis.org/A025480
+        ///
+        /// The special rules for moving backwards and removing marbles makes the result differ from this sequence.
+        ///
+        /// </remarks>
+        private void FindRemovedMarbles(int marbleCount)
+        {
+            int chainSize = marbleCount;
+            if (chainSize < 18)
+                chainSize = 18;
 
-            // Extract only the needed part of the chain, remove marbles dividable by 23
-            marbleChain = new Marble[chainSize / 2];
-            int offset = chainSize / 2 - 1;
+            // Allocate way too much memory here:
+            // (this is the amount needed if the pointer wasn't going backwards at times)
+            chainSize = chainSize * 2 - 1;
+            int[] chain = new int[chainSize];
 
-            for (int i = 0; i < marbleChain.Length; i++)
+            // First 18 numbers follow the standard pattern
+            for (int i = 0; i < 19; i++)
             {
-                marbleChain[i] = completeChain[i + offset];
-                if (marbleChain[i].Value > marbleCount)
-                    marbleChain[i].IsSet = false;
+                chain[i * 2] = i;
+                chain[i * 2 + 1] = chain[i];
+            }
 
-                if (marbleChain[i].IsSet && marbleChain[i].Value != 0 && marbleChain[i].Value % 23 == 0)
-                    marbleChain[i].IsSet = false;
+            // Main loop
+            // Calculates in two parts: The overlappings and the normal sequence.
+            int marbleIndex = 0;
+            int nextIndex = 37;
+            int copyIndex = 38;
+            int copySource = 19;
+
+            for (int i = 19; i < chainSize / 2; i += 23)
+            {
+                removedMarbles[marbleIndex] = chain[copyIndex - 1];
+                marbleIndex++;
+
+                // Calculate the 12 numbers where there's an overlap manually
+                {
+                    // Overlapping (next)
+                    chain[nextIndex] = i;
+                    chain[nextIndex + 3] = i + 1;
+                    chain[nextIndex + 7] = i + 2;
+                    chain[nextIndex + 11] = i + 3;
+
+                    // Overlapping (copy)
+                    chain[copyIndex] = chain[copySource];
+                    chain[copyIndex + 4] = chain[copySource + 1];
+                    chain[copyIndex + 8] = chain[copySource + 2];
+
+                    // Overlapping (next, offset)
+                    chain[nextIndex + 2] = i + 5;
+                    chain[nextIndex + 4] = i + 6;
+                    chain[nextIndex + 6] = i + 7;
+                    chain[nextIndex + 8] = i + 8;
+                    chain[nextIndex + 10] = i + 9;
+                }
+
+                // Sequence.
+                for (int j = 0; j < 13; j++)
+                {
+                    chain[nextIndex + 12 + j * 2] = i + 10 + j;
+                    chain[copyIndex + 12 + j * 2] = chain[copySource + 3 + j];
+                }
+
+                // Increment indexes
+                nextIndex += 37;
+                copyIndex += 37;
+                copySource += 16;
             }
         }
+
+        #endregion Initialization
 
         /// <summary>
         /// Adds the next marble. Returns the score.
         /// </summary>
         public int AddMarble()
         {
-            previousMarble++;
-            if (previousMarble % 23 != 0)
+            currentIndex++;
+            if (currentIndex % 23 != 0)
                 return 0;
 
-            int marble = previousMarble;
-
-            GoToMarble(marble - 1);
-            StepBack(steps: 7);
-
-            int points = marble;
-            points += marbleChain[currentIndex];
-            marbleChain[currentIndex].IsSet = false;
-            Console.WriteLine("Marble {0} resulted in {1} points, by removing a marble of value {2}", marble, points, marbleChain[currentIndex].Value);
+            int points = removedMarbles[currentIndex / 23 - 1] + currentIndex;
 
             return points;
-        }
-
-        /// <summary>
-        /// Steps forward to the next marble.
-        /// </summary>
-        private void GoToMarble(int currentMarble)
-        {
-            while (!marbleChain[currentIndex].IsSet || marbleChain[currentIndex].Value != currentMarble)
-            {
-                currentIndex++;
-                ConstrainIndex();
-            }
-        }
-
-        /// <summary>
-        /// Steps back a set number of marbles.
-        /// </summary>
-        private void StepBack(int steps)
-        {
-            for (int i = 0; i < steps; i++)
-            {
-                do
-                {
-                    currentIndex--;
-                    ConstrainIndex();
-                } while (!marbleChain[currentIndex].IsSet || marbleChain[currentIndex].Value > previousMarble);
-            }
-        }
-
-        private void ConstrainIndex()
-        {
-            while (currentIndex >= marbleChain.Length)
-                currentIndex -= marbleChain.Length;
-
-            while (currentIndex < 0)
-                currentIndex += marbleChain.Length;
-        }
-    }
-
-    internal struct Marble
-    {
-        /// <summary>
-        /// Gets or sets whether this marble is set/in use.
-        /// </summary>
-        public bool IsSet { get; set; }
-
-        /// <summary>
-        /// Gets or sets the value of this marble.
-        /// </summary>
-        public int Value { get; set; }
-
-        #region Operators
-
-        public static int operator +(int value, Marble marble)
-        {
-            return value + marble.Value;
-        }
-
-        public static implicit operator Marble(int value)
-        {
-            return new Marble
-            {
-                IsSet = true,
-                Value = value,
-            };
-        }
-
-        #endregion Operators
-
-        public override string ToString()
-        {
-            if (!IsSet)
-                return "false";
-
-            return $"Val: {Value}";
         }
     }
 }
