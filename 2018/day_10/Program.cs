@@ -6,7 +6,7 @@ using System.Text;
 namespace day_10
 {
     /*
-     * https://adventofcode.com/2018/day/9
+     * https://adventofcode.com/2018/day/10
      */
 
     /// <summary>

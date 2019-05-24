@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B734E82-F276-44E6-BE43-C74EA8D88FBD}</ProjectGuid>
+    <ProjectGuid>{CA9A6F42-3041-4058-A56F-FFE633585C66}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>day_10</RootNamespace>
-    <AssemblyName>day_10</AssemblyName>
+    <RootNamespace>day_11a</RootNamespace>
+    <AssemblyName>day_11a</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,12 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AOC.Resources\AOC.Resources.csproj">
-      <Project>{45EDFD3F-CE05-4EED-8F5F-B0DF633D9147}</Project>
-      <Name>AOC.Resources</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
