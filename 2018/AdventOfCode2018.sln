@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_09a", "day_09a\day_09a.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_09b", "day_09b\day_09b.csproj", "{96E23415-1E96-47BC-81A3-F3C07EC71489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_10a", "day_10a\day_10a.csproj", "{1B734E82-F276-44E6-BE43-C74EA8D88FBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_10", "day_10\day_10.csproj", "{1B734E82-F276-44E6-BE43-C74EA8D88FBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

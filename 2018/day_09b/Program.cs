@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace day_9b
 {
+    /*
+     * https://adventofcode.com/2018/day/9
+     */
+
     /// <summary>
     /// Works with both Part One and Part Two of Day 9. Faster than my original solution.
     /// </summary>
