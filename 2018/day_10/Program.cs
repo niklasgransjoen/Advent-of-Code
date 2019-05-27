@@ -37,7 +37,7 @@ namespace day_10
 
         private static void Main()
         {
-            string[] input = General.GetInputFromRelativePath("day10.txt").Result;
+            string[] input = General.GetInputFromRelativePath("day10.txt");
             Light[] lights = ParseInput(input);
 
             MoveLights(lights);

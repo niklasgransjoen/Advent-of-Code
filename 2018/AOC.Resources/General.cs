@@ -49,9 +49,9 @@ namespace AOC.Resources
         /// <summary>
         /// Reads the input of a relative file to a string array.
         /// </summary>
-        public static Task<string[]> GetInputFromRelativePath(string path)
+        public static string[] GetInputFromRelativePath(string path)
         {
-            return GetInputFromPath(@"..\..\..\input\" + path);
+            return File.ReadAllLines(@"..\..\..\input\" + path);
         }
 
         /// <summary>
