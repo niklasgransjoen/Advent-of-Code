@@ -63,7 +63,7 @@ namespace day_1b
         /// </summary>
         private static int CalculateResult(int[] input)
         {
-            List<int> previousValues = new List<int>();
+            HashSet<int> previousValues = new HashSet<int>();
             int result = 0;
 
             while (true)
@@ -72,10 +72,8 @@ namespace day_1b
                 {
                     result += value;
 
-                    if (previousValues.Contains(result))
+                    if (!previousValues.Add(result))
                         return result;
-
-                    previousValues.Add(result);
                 }
             }
         }
