@@ -37,8 +37,18 @@ namespace AOC.Resources
         public static string[] ReadInput(Days day)
         {
             var assembly = Assembly.GetCallingAssembly();
-            string path = assembly.Location + @"\..\..\..\..\input\" + day.ToString() + ".txt";
+            string path = assembly.Location + @"\..\..\..\..\..\input\" + day.ToString() + ".txt";
             return File.ReadAllLines(path);
+        }
+
+        public static int[] ReadIntegerInput(Days day)
+        {
+            string[] input = ReadInput(day);
+            int[] intInput = new int[input.Length];
+            for (int i = 0; i < input.Length; i++)
+                intInput[i] = int.Parse(input[i]);
+
+            return intInput;
         }
 
         public static string ReadSingleLineInput(Days day)
