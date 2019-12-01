@@ -1,9 +1,6 @@
 ﻿using AOC.Resources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace day_7b
 {
@@ -11,22 +8,18 @@ namespace day_7b
     * https://adventofcode.com/2018/day/7
     */
 
-    internal class Program
+    internal static class Program
     {
         private const int workers = 5;
 
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day7.txt");
-                //string[] input = General.GetInput();
-                List<KeyValuePair<char, char>> steps = ParseInput(input);
-                return CalculateResult(steps);
-            }).Result;
+            string[] input = General.ReadInput(Days.Day07);
+            //string[] input = General.GetInput();
+            List<KeyValuePair<char, char>> steps = ParseInput(input);
+            int result = CalculateResult(steps);
 
-            Console.WriteLine("Total work time is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("Total work time is", result);
         }
 
         /// <summary>
@@ -94,7 +87,7 @@ namespace day_7b
                     workLeft[workerIndex] = key - 4;
                     stepsList.Remove(key);
 
-                nextKey:;
+                    nextKey:;
                 }
 
                 //Console.WriteLine("{0} | {1} | {2}", result, workTask[0], workTask[1]);

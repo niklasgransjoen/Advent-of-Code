@@ -9,15 +9,14 @@ namespace day_3b
      * https://adventofcode.com/2018/day/3
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string[] input = General.GetInput();
+            string[] input = General.ReadInput(Days.Day03);
             int result = FindNonOverlappingClaim(input);
 
-            Console.WriteLine("ID of the claim with no overlap: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("ID of the claim with no overlap", result);
         }
 
         /// <summary>

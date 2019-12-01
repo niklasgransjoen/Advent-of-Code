@@ -1,5 +1,4 @@
 ﻿using AOC.Resources;
-using System;
 
 namespace day_3a
 {
@@ -16,15 +15,14 @@ namespace day_3a
      * https://adventofcode.com/2018/day/3
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string[] input = General.GetInput();
+            string[] input = General.ReadInput(Days.Day03);
             int result = FindOverlappingClaims(input);
 
-            Console.WriteLine("Square inches of fabric claimed more than once: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("Square inches of fabric claimed more than once", result);
         }
 
         /// <summary>

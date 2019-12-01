@@ -3,27 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace day_7a
 {
     /*
      * https://adventofcode.com/2018/day/7
      */
-    internal class Program
-    {
-        private static void Main(string[] args)
-        {
-            string result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day7.txt");
-                //string[] input = General.GetInput();
-                List<KeyValuePair<char, char>> steps = ParseInput(input);
-                return CalculateResult(steps);
-            }).Result;
 
-            Console.WriteLine("The answer is: {0}", result);
-            Console.ReadKey();
+    internal static class Program
+    {
+        private static void Main()
+        {
+            string[] input = General.ReadInput(Days.Day07);
+            List<KeyValuePair<char, char>> steps = ParseInput(input);
+            string result = CalculateResult(steps);
+
+            General.PrintResult("The answer is", result);
         }
 
         /// <summary>
@@ -79,7 +74,7 @@ namespace day_7a
                     stepsList.Remove(key);
                     break;
 
-                nextKey:;
+                    nextKey:;
                 }
             }
             while (stepsList.Any());

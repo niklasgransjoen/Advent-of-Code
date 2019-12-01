@@ -1,8 +1,6 @@
 ﻿using AOC.Resources;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_5b
 {
@@ -11,18 +9,14 @@ namespace day_5b
      * https://adventofcode.com/2018/day/5
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day5.txt");
-                return ReactInput(input[0]);
-            }).Result;
+            string[] input = General.ReadInput(Days.Day05);
+            int result = ReactInput(input[0]);
 
-            Console.WriteLine("Smallest number of units are: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("Smallest number of units are", result);
         }
 
         /// <summary>
@@ -30,14 +24,14 @@ namespace day_5b
         /// </summary>
         private static int ReactInput(string input)
         {
-            List<char> units = new List<char>
+            char[] units = new char[]
             {
                 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
             };
-            int[] result = new int[units.Count];
+            int[] result = new int[units.Length];
 
-            for (int i = 0; i < units.Count; i++)
+            for (int i = 0; i < units.Length; i++)
             {
                 string inputUnitsRemoved = input
                     .Replace(units[i].ToString(), "")

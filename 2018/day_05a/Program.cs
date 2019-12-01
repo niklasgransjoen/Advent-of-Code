@@ -1,6 +1,4 @@
 ﻿using AOC.Resources;
-using System;
-using System.Threading.Tasks;
 
 namespace day_5a
 {
@@ -15,20 +13,16 @@ namespace day_5a
      * https://adventofcode.com/2018/day/5
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day5.txt");
-                string output = ReactInput(input[0]);
+            string[] input = General.ReadInput(Days.Day05);
+            string output = ReactInput(input[0]);
 
-                return output.Length;
-            }).Result;
+            int result = output.Length;
 
-            Console.WriteLine("Number of units remaining are: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("Number of units remaining are", result);
         }
 
         /// <summary>

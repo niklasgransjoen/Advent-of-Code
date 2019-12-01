@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AOC.Resources;
+using System;
+using System.Diagnostics;
 
 namespace day_11b
 {
@@ -10,37 +12,36 @@ namespace day_11b
     /// Calculation with this took 4 minutes and 58 seconds.
     /// Check out the alternative day11b solution at day_11b2.
     /// </summary>
-    internal class Program
+    internal static class Program
     {
-        /// <summary>
-        /// The puzzle input.
-        /// </summary>
-        private const int GridSerialNumber = 2187;
-
         private static void Main()
         {
-            DateTime start = DateTime.Now;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-            int[,] grid = CreateGrid();
+            string input = General.ReadSingleLineInput(Days.Day11);
+            int gridSerialNumber = int.Parse(input);
+
+            int[,] grid = CreateGrid(gridSerialNumber);
             int[][,] sums = SumGridCells(grid);
 
             GetMaxCellCoordinates(sums, out int x, out int y, out int squareSize);
 
             Console.WriteLine("The result is \"{0},{1},{2}\"", x, y, squareSize);
-            Console.WriteLine("Calculation tok {0}", DateTime.Now - start);
+            Console.WriteLine("Calculation tok {0} ms", sw.ElapsedMilliseconds);
             Console.ReadKey();
         }
 
         /// <summary>
         /// Constructs the grid, calculates power levels for each cell.
         /// </summary>
-        private static int[,] CreateGrid()
+        private static int[,] CreateGrid(int gridSerialNumber)
         {
             int[,] grid = new int[300, 300];
 
             for (int x = 0; x < 300; x++)
                 for (int y = 0; y < 300; y++)
-                    grid[x, y] = CalculatePowerLevel(x, y);
+                    grid[x, y] = CalculatePowerLevel(x, y, gridSerialNumber);
 
             Console.WriteLine("Constructed power grid");
             return grid;
@@ -120,11 +121,11 @@ namespace day_11b
         /// <summary>
         /// Calculates the power level for a single cell.
         /// </summary>
-        private static int CalculatePowerLevel(int x, int y)
+        private static int CalculatePowerLevel(int x, int y, int gridSerialNumber)
         {
             int rackId = x + 10;
             int powerLevel = rackId * y;
-            powerLevel += GridSerialNumber;
+            powerLevel += gridSerialNumber;
             powerLevel *= rackId;
 
             powerLevel = (powerLevel / 100) - (powerLevel / 1000) * 10;

@@ -1,7 +1,6 @@
 ﻿using AOC.Resources;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_6b
 {
@@ -9,23 +8,18 @@ namespace day_6b
      * https://adventofcode.com/2018/day/6
      */
 
-    internal class Program
+    internal static class Program
     {
         private const int MaxDistance = 10000;
 
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day6.txt");
-                //string[] input = General.GetInput();
-                GetCoordinates(input, out int[] x, out int[] y);
-                int[,] map = CreateMap(x, y);
-                return FindRegionSize(map);
-            }).Result;
+            string[] input = General.ReadInput(Days.Day06);
+            GetCoordinates(input, out int[] x, out int[] y);
+            int[,] map = CreateMap(x, y);
+            int result = FindRegionSize(map);
 
-            Console.WriteLine("The size of the region is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The size of the region is", result);
         }
 
         /// <summary>
@@ -68,7 +62,7 @@ namespace day_6b
 
                     map[i, j] = 1;
 
-                nextCoordinate:;
+                    nextCoordinate:;
                 }
 
             return map;

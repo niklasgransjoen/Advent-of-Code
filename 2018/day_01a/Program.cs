@@ -1,5 +1,4 @@
 ﻿using AOC.Resources;
-using System;
 using System.Linq;
 
 namespace day_1a
@@ -17,16 +16,15 @@ namespace day_1a
      * https://adventofcode.com/2018/day/1
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string[] input = General.GetInput();
+            string[] input = General.ReadInput(Days.Day01);
             int[] parsedInput = ParseInput(input);
             int result = parsedInput.Sum();
 
-            Console.WriteLine("The result is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult(result);
         }
 
         /// <summary>

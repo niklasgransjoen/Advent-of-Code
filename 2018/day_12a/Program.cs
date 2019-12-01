@@ -10,10 +10,10 @@ namespace day_12a
     /// <summary>
     /// My solution to Part One of Day 12. Doesn't work with day 2.
     /// See day_12b for a solution that works better (for both parts).
-    /// 
+    ///
     /// Made on the assumtion that the following rule is always true: ..... => .
     /// </summary>
-    internal class Program
+    internal static class Program
     {
         /// <summary>
         /// The number of generations to simulate.
@@ -29,7 +29,7 @@ namespace day_12a
 
         private static void Main()
         {
-            string[] input = General.GetInputFromRelativePath("day12.txt");
+            string[] input = General.ReadInput(Days.Day12);
             ParseInput(input, out bool[] state, out bool[] rules);
 
             // Run all generations.
@@ -52,8 +52,7 @@ namespace day_12a
                     result += i - Offset;
             }
 
-            Console.WriteLine("The result is {0}", result);
-            Console.ReadKey();
+            General.PrintResult(result);
         }
 
         /// <summary>

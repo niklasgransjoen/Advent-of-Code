@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AOC.Resources\AOC.Resources.csproj">
+    <ProjectReference Include="..\..\Resources\AOC.Resources\AOC.Resources.csproj">
       <Project>{45edfd3f-ce05-4eed-8f5f-b0df633d9147}</Project>
       <Name>AOC.Resources</Name>
     </ProjectReference>

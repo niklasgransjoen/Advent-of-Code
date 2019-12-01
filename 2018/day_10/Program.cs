@@ -10,10 +10,10 @@ namespace day_10
      */
 
     /// <summary>
-    /// This answer is based upon the asumption that the letters are written out in such a matter that all lights neighbor minumum a single other light,
+    /// This answer is based upon the asumption that the letters are written out in such a matter that all lights neighbor minimum a single other light,
     /// and that such an alignment only occurs once.
     /// </summary>
-    internal class Program
+    internal static class Program
     {
         /// <summary>
         /// We make the assumtion that the answer will fit on a 500x500 view.
@@ -37,7 +37,7 @@ namespace day_10
 
         private static void Main()
         {
-            string[] input = General.GetInputFromRelativePath("day10.txt");
+            string[] input = General.ReadInput(Days.Day10);
             Light[] lights = ParseInput(input);
 
             MoveLights(lights);

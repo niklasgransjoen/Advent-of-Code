@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_4a
 {
@@ -18,27 +17,23 @@ namespace day_4a
      * https://adventofcode.com/2018/day/4
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(() =>
-            {
-                string[] input = General.GetInput();
-                Array.Sort(input, StringComparer.InvariantCulture);
-                ProcessInput(input, out string[] timestamps, out string[] events);
-                CreateTimetable(timestamps, events, out List<bool[]> timetable, out List<int> ids);
-                int id = FindGuardWithMostMinutesAsleep(timetable, ids);
-                int minuteMostSlept = FindGuardsMostasleepMinute(timetable, ids, id);
+            string[] input = General.ReadInput(Days.Day04);
+            Array.Sort(input, StringComparer.InvariantCulture);
+            ProcessInput(input, out string[] timestamps, out string[] events);
+            CreateTimetable(timestamps, events, out List<bool[]> timetable, out List<int> ids);
+            int id = FindGuardWithMostMinutesAsleep(timetable, ids);
+            int minuteMostSlept = FindGuardsMostasleepMinute(timetable, ids, id);
 
-                Console.WriteLine("Guard with id: {0}", id);
-                Console.WriteLine("Minute most slept: {0}", minuteMostSlept);
+            Console.WriteLine("Guard with id: {0}", id);
+            Console.WriteLine("Minute most slept: {0}", minuteMostSlept);
 
-                return minuteMostSlept * id;
-            }).Result;
+            int result = minuteMostSlept * id;
 
-            Console.WriteLine("The answer is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The answer is", result);
         }
 
         /// <summary>

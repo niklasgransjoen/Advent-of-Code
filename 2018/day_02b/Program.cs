@@ -1,27 +1,24 @@
 ﻿using AOC.Resources;
-using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace day_2b
 {
     /*
      * The boxes will have IDs which differ by exactly one character at the same position in both strings.
      * What letters are common between the two correct box IDs?
-     * 
+     *
      * https://adventofcode.com/2018/day/2
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string[] input = General.GetInput();
-            string[] correctIDs = Task.Run(() => FindCorrectIDs(input)).Result;
+            string[] input = General.ReadInput(Days.Day02);
+            string[] correctIDs = FindCorrectIDs(input);
             string commonLetters = GetCommonLetters(correctIDs[0], correctIDs[1]);
 
-            Console.WriteLine("The common letters of your correct IDs are: {0}", commonLetters);
-            Console.ReadKey();
+            General.PrintResult("The common letters of your correct IDs are", commonLetters);
         }
 
         /// <summary>

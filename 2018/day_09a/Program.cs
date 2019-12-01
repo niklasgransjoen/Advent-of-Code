@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_9a
 {
@@ -14,20 +13,16 @@ namespace day_9a
     /// My solution to Part One of Day 9. Should work with Part Two as well, but is way too slow.
     /// See day_9b for a solution that works better (for both parts).
     /// </summary>
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(() =>
-            {
-                string input = General.GetLineInput();
-                ParseInput(input, out int players, out int maxPoints);
+            string input = General.ReadSingleLineInput(Days.Day09);
+            ParseInput(input, out int players, out int maxPoints);
 
-                return GetGameResult(players, maxPoints);
-            }).Result;
+            int result = GetGameResult(players, maxPoints);
 
-            Console.WriteLine("The winning Elf's score is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The winning Elf's score is", result);
         }
 
         private static void ParseInput(string input, out int players, out int maxPoints)

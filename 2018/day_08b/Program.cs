@@ -1,8 +1,6 @@
 ﻿using AOC.Resources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_8b
 {
@@ -10,21 +8,17 @@ namespace day_8b
    * https://adventofcode.com/2018/day/8
    */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string input = await General.GetLineFromPath(@"..\..\..\input\day8.txt");
-                //string input = General.GetLineInput();
-                List<int> parsedInput = ParseInput(input);
-                Node node = BuildTree(parsedInput);
-                return node.GetValue();
-            }).Result;
+            string input = General.ReadSingleLineInput(Days.Day08);
+            //string input = General.GetLineInput();
+            List<int> parsedInput = ParseInput(input);
+            Node node = BuildTree(parsedInput);
+            int result = node.GetValue();
 
-            Console.WriteLine("The value of the root is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The value of the root is", result);
         }
 
         private static List<int> ParseInput(string input)

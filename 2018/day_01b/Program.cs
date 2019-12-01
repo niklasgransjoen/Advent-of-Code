@@ -1,29 +1,26 @@
 ﻿using AOC.Resources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_1b
 {
-    /* 
+    /*
      * You notice that the device repeats the same frequency change list over and over.
      * To calibrate the device, you need to find the first frequency it reaches twice.
-     * 
+     *
      * https://adventofcode.com/2018/day/1
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string[] input = General.GetInput();
+            string[] input = General.ReadInput(Days.Day01);
             int[] parsedInput = ParseInput(input);
 
-            int result = Task.Run(() => CalculateResult(parsedInput)).Result;
+            int result = CalculateResult(parsedInput);
 
-            Console.WriteLine("The result is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult(result);
         }
 
         /// <summary>

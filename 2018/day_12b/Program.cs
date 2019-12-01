@@ -1,5 +1,4 @@
 ﻿using AOC.Resources;
-using System;
 
 namespace day_12b
 {
@@ -12,7 +11,7 @@ namespace day_12b
     ///
     /// Made on the assumtion that the following rule is always true: ..... => .
     /// </summary>
-    internal class Program
+    internal static class Program
     {
         /// <summary>
         /// The number of generations to simulate.
@@ -32,7 +31,7 @@ namespace day_12b
             Flower[] state = new Flower[FlowerArrayAlloc];
             Flower[] newState = new Flower[FlowerArrayAlloc];
 
-            string[] input = General.GetInputFromRelativePath("day12.txt");
+            string[] input = General.ReadInput(Days.Day12);
             ParseInput(input, state, out bool[] rules, out int flowerCount);
 
             // Run all generations.
@@ -54,8 +53,7 @@ namespace day_12b
                     result += state[i].value;
             }
 
-            Console.WriteLine("The result is {0}", result);
-            Console.ReadKey();
+            General.PrintResult(result);
         }
 
         /// <summary>
@@ -98,9 +96,7 @@ namespace day_12b
             bool[] flowers = new bool[5];
             for (int i = 0; i < flowerCount; i++)
             {
-
             }
-
 
             /*for (int i = 2; i < state.Length - 2; i++)
             {

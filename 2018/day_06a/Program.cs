@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace day_6a
 {
@@ -15,22 +14,17 @@ namespace day_6a
      * https://adventofcode.com/2018/day/6
      */
 
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            int result = Task.Run(async () =>
-            {
-                string[] input = await General.GetInputFromPath(@"..\..\..\input\day6.txt");
-                //string[] input = General.GetInput();
-                GetCoordinates(input, out int[] x, out int[] y);
-                int[,] map = CreateMap(x, y);
-                FilterMap(map);
-                return FindLargestArea(map, input.Length);
-            }).Result;
+            string[] input = General.ReadInput(Days.Day06);
+            GetCoordinates(input, out int[] x, out int[] y);
+            int[,] map = CreateMap(x, y);
+            FilterMap(map);
+            int result = FindLargestArea(map, input.Length);
 
-            Console.WriteLine("The largest are that isn't infinite has an area of: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The largest are that isn't infinite has an area of", result);
         }
 
         /// <summary>
@@ -144,7 +138,7 @@ namespace day_6a
                 AddValue(valuesToRemove, map[map.GetLength(0) - 1, j]);
             }
 
-            for (int i = 0; i < map.GetLength(0); i++) 
+            for (int i = 0; i < map.GetLength(0); i++)
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
                     if (valuesToRemove.Contains(map[i, j]))

@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Resources\AOC.Resources\AOC.Resources.csproj">
+      <Project>{45EDFD3F-CE05-4EED-8F5F-B0DF633D9147}</Project>
+      <Name>AOC.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

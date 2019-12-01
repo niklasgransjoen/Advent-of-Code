@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AOC.Resources;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,20 +12,19 @@ namespace day_9b
     /// <summary>
     /// Works with both Part One and Part Two of Day 9. Faster than my original solution.
     /// </summary>
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
             long result = Task.Run(() =>
             {
-                string input = "486;7083300";
+                string input = General.ReadSingleLineInput(Days.Day09);
                 ParseInput(input, out int players, out int maxPoints);
 
-                return GetGameResult(players, maxPoints);
+                return GetGameResult(players, maxPoints * 100);
             }).Result;
 
-            Console.WriteLine("The winning Elf's score is: {0}", result);
-            Console.ReadKey();
+            General.PrintResult("The winning Elf's score is", result);
         }
 
         private static void ParseInput(string input, out int players, out int maxPoints)

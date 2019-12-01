@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_01a", "day_01a\day_01a.csproj", "{D9F8320E-6263-47B0-843B-4EDC3828188D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOC.Resources", "AOC.Resources\AOC.Resources.csproj", "{45EDFD3F-CE05-4EED-8F5F-B0DF633D9147}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOC.Resources", "..\Resources\AOC.Resources\AOC.Resources.csproj", "{45EDFD3F-CE05-4EED-8F5F-B0DF633D9147}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day_01b", "day_01b\day_01b.csproj", "{4C50B1EC-EB9B-4C05-B961-EC0C8698362B}"
 EndProject
