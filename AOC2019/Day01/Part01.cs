@@ -1,17 +1,17 @@
 ﻿using AOC.Resources;
 using System.Linq;
 
-namespace day01
+namespace AOC2019.Day01
 {
     /**
      * https://adventofcode.com/2019/day/1
      */
 
-    internal static class Program
+    public static class Part01
     {
-        private static void Main()
+        public static void Exec()
         {
-            int[] moduleMass = General.ReadIntegerInput(Days.Day01);
+            int[] moduleMass = General.ReadIntegerInput(Day.Day01);
 
             int[] fuelRequirements = CalculateFuelRequirements(moduleMass);
             int result = fuelRequirements.Sum();

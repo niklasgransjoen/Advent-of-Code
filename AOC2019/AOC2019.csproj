@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <nullable>enable</nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Resources\AOC.Resources\AOC.Resources.csproj" />
+    <ProjectReference Include="..\AOC.Resources\AOC.Resources.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,47 +1,24 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 
 namespace AOC.Resources
 {
-    public enum Days
-    {
-        Day01,
-        Day02,
-        Day03,
-        Day04,
-        Day05,
-        Day06,
-        Day07,
-        Day08,
-        Day09,
-        Day10,
-        Day11,
-        Day12,
-        Day13,
-        Day14,
-        Day15,
-        Day16,
-        Day17,
-        Day18,
-        Day19,
-        Day20,
-        Day21,
-        Day22,
-        Day23,
-        Day24,
-    }
-
     public static class General
     {
-        public static string[] ReadInput(Days day)
+        private static string Filepath { get; set; }
+
+        public static void SetInput(string filepath)
         {
-            var assembly = Assembly.GetCallingAssembly();
-            string path = assembly.Location + @"\..\..\..\..\..\input\" + day.ToString() + ".txt";
+            Filepath = filepath;
+        }
+
+        public static string[] ReadInput(Day day)
+        {
+            string path = Filepath + "\\" + day.ToString() + ".txt";
             return File.ReadAllLines(path);
         }
 
-        public static int[] ReadIntegerInput(Days day)
+        public static int[] ReadIntegerInput(Day day)
         {
             string[] input = ReadInput(day);
             int[] intInput = new int[input.Length];
@@ -51,7 +28,7 @@ namespace AOC.Resources
             return intInput;
         }
 
-        public static string ReadSingleLineInput(Days day)
+        public static string ReadSingleLineInput(Day day)
         {
             string[] lines = ReadInput(day);
             if (lines.Length == 0)
