@@ -21,11 +21,7 @@ namespace AOC.Resources
         public static int[] ReadIntegerInput(Day day)
         {
             string[] input = ReadInput(day);
-            int[] intInput = new int[input.Length];
-            for (int i = 0; i < input.Length; i++)
-                intInput[i] = int.Parse(input[i]);
-
-            return intInput;
+            return ParseStrings(input);
         }
 
         public static string ReadSingleLineInput(Day day)
@@ -37,6 +33,21 @@ namespace AOC.Resources
                 throw new Exception("Input file had more than one line!");
 
             return lines[0];
+        }
+
+        public static string[] ReadCSVInput(Day day)
+        {
+            string input = ReadSingleLineInput(day);
+            return input.Split(',');
+        }
+
+        public static int[] ParseStrings(string[] values)
+        {
+            int[] intInput = new int[values.Length];
+            for (int i = 0; i < values.Length; i++)
+                intInput[i] = int.Parse(values[i]);
+
+            return intInput;
         }
 
         public static void PrintResult<T>(T result)
