@@ -1,7 +1,7 @@
 ﻿using AOC.Resources;
 using System.IO;
 
-namespace AOC2019
+namespace AOC2018
 {
     internal class Program
     {
@@ -9,7 +9,7 @@ namespace AOC2019
         {
             General.SetInput(Path.GetFullPath("Input"));
 
-            Day02.Part02.Exec();
+            Day01.Part01.Exec();
         }
     }
 }
