@@ -4,7 +4,7 @@ using System.Linq;
 namespace AOC2019.Day01
 {
     /**
-     * https://adventofcode.com/2019/day/1#part2
+     * https://adventofcode.com/2019/day/1
      */
 
     public static class Part02

@@ -41,7 +41,7 @@ namespace AOC.Resources
             return input.Split(',');
         }
 
-        public static int[] ParseStrings(string[] values)
+        public static int[] ParseStrings(Span<string> values)
         {
             int[] intInput = new int[values.Length];
             for (int i = 0; i < values.Length; i++)
@@ -55,9 +55,11 @@ namespace AOC.Resources
             PrintResult("The answer is", result);
         }
 
-        public static void PrintResult<T>(string caption, T result)
+        public static void PrintResult<T>(ReadOnlySpan<char> caption, T result)
         {
-            Console.Write(caption);
+            for (int i = 0; i < caption.Length; i++)
+                Console.Write(caption[i]);
+
             Console.WriteLine(": {0}", result);
 
             Console.ReadKey();

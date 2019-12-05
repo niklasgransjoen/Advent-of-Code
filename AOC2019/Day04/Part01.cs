@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace AOC2019.Day04
 {
+    /**
+     * https://adventofcode.com/2019/day/4
+     */
+
     public static class Part01
     {
         public static void Exec()
