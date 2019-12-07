@@ -44,7 +44,6 @@ namespace AOC2019.Day05
 
         public static void Exec()
         {
-            Console.ReadKey();
             string[] input = General.ReadCSVInput(Day.Day05);
             int[] intcode = General.ParseStrings(input);
 
