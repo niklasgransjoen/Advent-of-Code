@@ -44,6 +44,7 @@ namespace AOC2019.Day05
 
         public static void Exec()
         {
+            Console.ReadKey();
             string[] input = General.ReadCSVInput(Day.Day05);
             int[] intcode = General.ParseStrings(input);
 
@@ -73,8 +74,8 @@ namespace AOC2019.Day05
                     int valueIndex = index + i + 1;
                     if (opcodeInfo.IsWriteDestination[i])
                     {
-                        // Write destination values are position mode, but we use immediate to read *address* of write destination.
-                        parameters[i] = ReadValue(ParameterMode.Immediate, intcode, valueIndex);
+                        // Write destination values are always position mode.
+                        parameters[i] = ReadValue(ParameterMode.Position, intcode, valueIndex);
                     }
                     else
                     {
@@ -129,8 +130,8 @@ namespace AOC2019.Day05
         {
             return parameterMode switch
             {
-                ParameterMode.Position => intcode[intcode[index]],
-                ParameterMode.Immediate => intcode[index],
+                ParameterMode.Position => intcode[index],
+                ParameterMode.Immediate => index,
 
                 _ => throw new ArgumentException("Invalid parameter mode"),
             };
@@ -140,42 +141,42 @@ namespace AOC2019.Day05
         /// Executes an opcode.
         /// </summary>
         /// <returns>The next position of the instruction pointer. -1 if it should just be incremented as usual.</returns>
-        private static int ExecuteOpcode(Span<int> intcode, Opcode opcode, ReadOnlySpan<int> parameters)
+        private static int ExecuteOpcode(Span<int> c, Opcode opcode, ReadOnlySpan<int> p)
         {
             switch (opcode)
             {
                 case Opcode.ADD:
-                    intcode[parameters[2]] = parameters[0] + parameters[1];
+                    c[p[2]] = c[p[0]] + c[p[1]];
                     break;
 
                 case Opcode.MUL:
-                    intcode[parameters[2]] = parameters[0] * parameters[1];
+                    c[p[2]] = c[p[0]] * c[p[1]];
                     break;
 
                 case Opcode.INP:
-                    intcode[parameters[0]] = Input;
+                    c[p[0]] = Input;
                     break;
 
                 case Opcode.OUT:
-                    Console.WriteLine(parameters[0]);
+                    Console.WriteLine(c[p[0]]);
                     break;
 
                 case Opcode.JNZ:
-                    if (parameters[0] != 0)
-                        return parameters[1];
+                    if (c[p[0]] != 0)
+                        return c[p[1]];
                     break;
 
                 case Opcode.JZ:
-                    if (parameters[0] == 0)
-                        return parameters[1];
+                    if (c[p[0]] == 0)
+                        return c[p[1]];
                     break;
 
                 case Opcode.LT:
-                    intcode[parameters[2]] = parameters[0] < parameters[1] ? 1 : 0;
+                    c[p[2]] = c[p[0]] < c[p[1]] ? 1 : 0;
                     break;
 
                 case Opcode.EQL:
-                    intcode[parameters[2]] = parameters[0] == parameters[1] ? 1 : 0;
+                    c[p[2]] = c[p[0]] == c[p[1]] ? 1 : 0;
                     break;
 
                 default:
