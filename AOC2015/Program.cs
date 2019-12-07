@@ -1,7 +1,7 @@
 ﻿using AOC.Resources;
 using System.IO;
 
-namespace AOC2019
+namespace AOC2015
 {
     internal class Program
     {
