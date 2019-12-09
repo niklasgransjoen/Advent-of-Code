@@ -18,6 +18,10 @@ namespace AOC2015.Day07.P01.Syntax
             do
             {
                 current = lexer.Lex();
+
+                if (current.Kind == SyntaxKind.WhiteSpaceToken)
+                    continue;
+
                 tokens.Add(current);
             }
             while (current.Kind != SyntaxKind.EndOfFileToken);
@@ -57,7 +61,7 @@ namespace AOC2015.Day07.P01.Syntax
 
         private Expression ParseUnaryExpression()
         {
-            SyntaxToken notToken = MatchToken(SyntaxKind.NotKeyword);
+            SyntaxToken notToken = Next();
             SyntaxToken input = Next();
             SyntaxToken arrowToken = MatchToken(SyntaxKind.ArrowToken);
             SyntaxToken output = MatchToken(SyntaxKind.IdentifierToken);
@@ -77,7 +81,7 @@ namespace AOC2015.Day07.P01.Syntax
         private Expression ParseBinaryExpression()
         {
             SyntaxToken leftInput = Next();
-            SyntaxToken operatorToken = Next(); // better hope this is an operator 😓
+            SyntaxToken operatorToken = Next();
             SyntaxToken rightInput = Next();
             SyntaxToken arrowToken = MatchToken(SyntaxKind.ArrowToken);
             SyntaxToken output = MatchToken(SyntaxKind.IdentifierToken);

@@ -9,7 +9,5 @@
 
         public ushort Value { get; }
         public override string SignalName => "Literal value";
-
-        protected override ushort EvaluateSignal() => Value;
     }
 }

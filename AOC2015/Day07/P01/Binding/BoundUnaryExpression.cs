@@ -10,11 +10,5 @@
 
         public BoundExpression Input { get; }
         public override string SignalName { get; }
-
-        protected override ushort EvaluateSignal()
-        {
-            int result = ~Input.Evaluate();
-            return (ushort)result;
-        }
     }
 }

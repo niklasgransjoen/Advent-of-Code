@@ -6,6 +6,7 @@
         LiteralToken,
         IdentifierToken,
         ArrowToken,
+        WhiteSpaceToken,
         EndOfFileToken,
 
         // Keywords

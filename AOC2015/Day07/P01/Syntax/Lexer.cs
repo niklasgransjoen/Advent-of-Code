@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace AOC2015.Day07.P01.Syntax
 {
@@ -32,69 +31,41 @@ namespace AOC2015.Day07.P01.Syntax
                     _position++;
                     return new SyntaxToken(SyntaxKind.EndOfFileToken, "\0");
 
-                case '-':
-                    if (LookAhead == '>')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.ArrowToken, "->");
-                    }
-                    break;
+                case '-' when LookAhead == '>':
+                    _position += 2;
+                    return new SyntaxToken(SyntaxKind.ArrowToken, "->");
 
                 case '\r':
                 case '\n':
                 case ' ':
-                    _position++;
-                    return Lex();
-            }
+                    return ReadWhiteSpace();
 
-            if (char.IsDigit(Current))
-                return ReadNumberLiteral();
-
-            if (TryReadKeyword(out SyntaxKind keyword, out string? text))
-                return new SyntaxToken(keyword, text);
-
-            return ReadIdentifier();
-        }
-
-        private bool TryReadKeyword(out SyntaxKind keyword, [NotNullWhen(true)] out string? text)
-        {
-            int offset = 0;
-            while (char.IsLetter(Peek(offset)))
-                offset++;
-
-            text = _sourceText[_start..(_position + offset)];
-            switch (text)
-            {
-                case "NOT":
-                    keyword = SyntaxKind.NotKeyword;
-                    _position += offset + 1;
-                    return true;
-
-                case "OR":
-                    keyword = SyntaxKind.OrKeyword;
-                    _position += offset + 1;
-                    return true;
-
-                case "AND":
-                    keyword = SyntaxKind.AndKeyword;
-                    _position += offset + 1;
-                    return true;
-
-                case "RSHIFT":
-                    keyword = SyntaxKind.RShiftKeyword;
-                    _position += offset + 1;
-                    return true;
-
-                case "LSHIFT":
-                    keyword = SyntaxKind.LShiftKeyword;
-                    _position += offset + 1;
-                    return true;
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    return ReadNumberLiteral();
 
                 default:
-                    keyword = default;
-                    text = null;
-                    return false;
+                    if (char.IsLetter(Current))
+                        return ReadIdentifierOrKeyword();
+                    else
+                        throw new Exception("Illegal character");
             }
+        }
+
+        private SyntaxToken ReadWhiteSpace()
+        {
+            while (char.IsWhiteSpace(Current))
+                _position++;
+
+            return new SyntaxToken(SyntaxKind.WhiteSpaceToken, _sourceText[_start.._position]);
         }
 
         private SyntaxToken ReadNumberLiteral()
@@ -105,15 +76,46 @@ namespace AOC2015.Day07.P01.Syntax
             return new SyntaxToken(SyntaxKind.LiteralToken, _sourceText[_start.._position]);
         }
 
-        private SyntaxToken ReadIdentifier()
+        private SyntaxToken ReadIdentifierOrKeyword()
         {
-            if (!char.IsLetter(Current))
-                throw new Exception("Expected letter");
-
             while (char.IsLetter(Current))
                 _position++;
 
-            return new SyntaxToken(SyntaxKind.IdentifierToken, _sourceText[_start.._position]);
+            string word = _sourceText[_start.._position];
+            if (TryGetKeywordKind(word, out SyntaxKind keyword))
+                return new SyntaxToken(keyword, word);
+
+            return new SyntaxToken(SyntaxKind.IdentifierToken, word);
+        }
+
+        private bool TryGetKeywordKind(string word, out SyntaxKind keyword)
+        {
+            switch (word)
+            {
+                case "NOT":
+                    keyword = SyntaxKind.NotKeyword;
+                    return true;
+
+                case "OR":
+                    keyword = SyntaxKind.OrKeyword;
+                    return true;
+
+                case "AND":
+                    keyword = SyntaxKind.AndKeyword;
+                    return true;
+
+                case "RSHIFT":
+                    keyword = SyntaxKind.RShiftKeyword;
+                    return true;
+
+                case "LSHIFT":
+                    keyword = SyntaxKind.LShiftKeyword;
+                    return true;
+
+                default:
+                    keyword = default;
+                    return false;
+            }
         }
 
         #region Utilities

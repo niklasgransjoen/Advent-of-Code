@@ -1,7 +1,7 @@
 ﻿using AOC.Resources;
+using AOC2015.Day07.P01;
 using AOC2015.Day07.P01.Binding;
 using AOC2015.Day07.P01.Syntax;
-using System;
 using System.Linq;
 
 namespace AOC2015.Day07
@@ -22,20 +22,17 @@ namespace AOC2015.Day07
             var expressions = Parser.Parse(input);
             var boundExpressions = Binder.Bind(expressions);
 
-            Console.WriteLine("Parsing and binding completed");
-            Console.WriteLine();
-
-            foreach (var expression in boundExpressions)
+            BoundExpression? resultSignal = boundExpressions.SingleOrDefault(b => b.SignalName == ResultSignal);
+            if (resultSignal is null)
             {
-                Console.WriteLine("Signal '{0}' evaluates to {1}", expression.SignalName, expression.Evaluate());
+                General.PrintError($"Signal with name '{ResultSignal}' does not exist.");
+                return;
             }
-            Console.WriteLine();
 
-            Console.WriteLine("Signal '{0}' evaluates to {1}", ResultSignal, boundExpressions.Single(b => b.SignalName == ResultSignal).Evaluate());
+            Evaluator evaluator = new Evaluator();
+            ushort result = evaluator.Evaluate(resultSignal);
 
-            Console.WriteLine();
-            Console.WriteLine("Please come again.");
-            Console.ReadKey();
+            General.PrintResult(result);
         }
     }
 }
