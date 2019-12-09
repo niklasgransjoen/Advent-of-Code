@@ -21,7 +21,7 @@ namespace AOC.Resources
         public static int[] ReadIntegerInput(Day day)
         {
             string[] input = ReadInput(day);
-            return ParseStrings(input);
+            return StringToInt(input);
         }
 
         public static string ReadSingleLineInput(Day day)
@@ -41,11 +41,20 @@ namespace AOC.Resources
             return input.Split(',');
         }
 
-        public static int[] ParseStrings(Span<string> values)
+        public static int[] StringToInt(Span<string> values)
         {
             int[] intInput = new int[values.Length];
             for (int i = 0; i < values.Length; i++)
                 intInput[i] = int.Parse(values[i]);
+
+            return intInput;
+        }
+
+        public static long[] StringToLong(Span<string> values)
+        {
+            long[] intInput = new long[values.Length];
+            for (int i = 0; i < values.Length; i++)
+                intInput[i] = long.Parse(values[i]);
 
             return intInput;
         }

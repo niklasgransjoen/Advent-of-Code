@@ -12,7 +12,7 @@ namespace AOC2019.Day02
         public static void Exec()
         {
             string[] input = General.ReadCSVInput(Day.Day02);
-            int[] intcode = General.ParseStrings(input);
+            int[] intcode = General.StringToInt(input);
 
             // Replace initial values.
             intcode[1] = 12;

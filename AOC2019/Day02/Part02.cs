@@ -14,7 +14,7 @@ namespace AOC2019.Day02
         public static void Exec()
         {
             string[] input = General.ReadCSVInput(Day.Day02);
-            int[] inputIntcode = General.ParseStrings(input);
+            int[] inputIntcode = General.StringToInt(input);
             Span<int> intcode = new int[inputIntcode.Length];
 
             for (int i = 0; i < 100; i++)
