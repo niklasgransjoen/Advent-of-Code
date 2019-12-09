@@ -9,7 +9,7 @@ namespace AOC2015
         {
             General.SetInput(Path.GetFullPath("Input"));
 
-            Day07.Part01.Exec();
+            Day07.Part02.Exec();
         }
     }
 }
