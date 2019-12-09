@@ -14,7 +14,7 @@ namespace AOC.Resources
 
         public static string[] ReadInput(Day day)
         {
-            string path = Filepath + "\\" + day.ToString() + ".txt";
+            string path = GetPath(day);
             return File.ReadAllLines(path);
         }
 
@@ -26,13 +26,8 @@ namespace AOC.Resources
 
         public static string ReadSingleLineInput(Day day)
         {
-            string[] lines = ReadInput(day);
-            if (lines.Length == 0)
-                throw new Exception("Input file had no lines!");
-            if (lines.Length > 1)
-                throw new Exception("Input file had more than one line!");
-
-            return lines[0];
+            string path = GetPath(day);
+            return File.ReadAllText(path);
         }
 
         public static string[] ReadCSVInput(Day day)
@@ -73,5 +68,14 @@ namespace AOC.Resources
 
             Console.ReadKey();
         }
+
+        #region Helpers
+
+        private static string GetPath(Day day)
+        {
+            return Filepath + "\\" + day.ToString() + ".txt";
+        }
+
+        #endregion Helpers
     }
 }
