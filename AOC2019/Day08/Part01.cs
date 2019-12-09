@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace AOC2019.Day08
 {
+    /**
+     * https://adventofcode.com/2019/day/8
+     */
+
     public static class Part01
     {
         private const int ImageWidth = 25;
