@@ -9,7 +9,7 @@ namespace AOC2019
         {
             General.SetInput(Path.GetFullPath("Input"));
 
-            Day09.Part02.Exec();
+            Day10.Part02.Exec();
         }
     }
 }
