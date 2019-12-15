@@ -21,7 +21,7 @@ namespace AOC2019.Day14
             NanoFactory factory = new NanoFactory(input);
 
             long remainingOre = OreQuantity;
-            int fuelBatch = 10_000;
+            int fuelBatch = 1_000_000;
             int fuel = 0;
             do
             {
@@ -114,14 +114,14 @@ namespace AOC2019.Day14
 
                 // We need to make more.
                 Recipe recipe = _recipies[product];
-                long batchSize = (int)Math.Ceiling(quantity / (double)recipe.OutputQuantity);
+                long batchSize = (long)Math.Ceiling(quantity / (double)recipe.OutputQuantity);
 
                 long oreRequirement = 0;
                 foreach (var ingredient in recipe.Ingredients)
                 {
-                    oreRequirement += CalculateOreRequirement(ingredient.Key, ingredient.Value * batchSize);
+                    oreRequirement += CalculateOreRequirement(ingredient.Key, checked(ingredient.Value * batchSize));
                 }
-                storedQuantity += recipe.OutputQuantity * batchSize;
+                storedQuantity += checked(recipe.OutputQuantity * batchSize);
 
                 _storage[product] = storedQuantity - quantity;
                 return oreRequirement;
