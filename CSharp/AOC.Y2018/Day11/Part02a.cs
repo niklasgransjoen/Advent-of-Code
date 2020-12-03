@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2018.Day11
 {
@@ -9,9 +8,9 @@ namespace AOC.Y2018.Day11
 
     public static class Part02a
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day11);
+            string input = context.Input;
             int gridSerialNumber = int.Parse(input);
 
             int[,] grid = CreateGrid(gridSerialNumber);

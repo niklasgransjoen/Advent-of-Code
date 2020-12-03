@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,10 +33,10 @@ namespace AOC.Y2019.Day05
         private const int ParameterBufferSize = 3;
         private const int Input = 1;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day05);
-            int[] intcode = General.StringToInt(input);
+            string[] input = context.GetCSVInput();
+            int[] intcode = AOCUtils.StringToInt(input);
 
             ExecuteIntcode(intcode);
             Console.ReadKey();

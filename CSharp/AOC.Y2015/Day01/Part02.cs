@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2015.Day01
 {
@@ -9,9 +8,9 @@ namespace AOC.Y2015.Day01
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day01);
+            string input = context.Input;
 
             int currentFloor = 0;
             for (int i = 0; i < input.Length; i++)
@@ -24,7 +23,7 @@ namespace AOC.Y2015.Day01
                 if (currentFloor == -1)
                 {
                     int result = i + 1;
-                    General.PrintResult(result);
+                    AOCUtils.PrintResult(result);
                     return;
                 }
             }

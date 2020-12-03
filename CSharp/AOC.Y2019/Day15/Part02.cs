@@ -1,19 +1,17 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day15.P02;
+﻿using AOC.Y2019.Day15.P02;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 
 namespace AOC.Y2019.Day15
 {
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day15);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             var communicator = new Communicator();
             IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, communicator);
@@ -124,7 +122,7 @@ namespace AOC.Y2019.Day15
                 }
 
                 Console.WriteLine();
-                General.WriteLine("All areas on the map have been discovered.", ConsoleColor.Magenta);
+                AOCUtils.WriteLine("All areas on the map have been discovered.", ConsoleColor.Magenta);
                 LocateDestinationFurthestFromOxygenSystem();
             }
 
@@ -148,7 +146,7 @@ namespace AOC.Y2019.Day15
                     }
                 }
 
-                General.WriteLine($"It takes {maxSteps:N0} minutes to refill the area with oxygen.", ConsoleColor.Magenta);
+                AOCUtils.WriteLine($"It takes {maxSteps:N0} minutes to refill the area with oxygen.", ConsoleColor.Magenta);
                 Console.ReadLine();
                 Environment.Exit(0);
             }

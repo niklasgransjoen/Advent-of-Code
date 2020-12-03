@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AOC.Y2015.Day01
 {
@@ -9,14 +8,14 @@ namespace AOC.Y2015.Day01
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day01);
+            string input = context.Input;
             int positive = input.Count(c => c == '(');
             int negative = input.Length - positive;
 
             int result = positive - negative;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
     }
 }

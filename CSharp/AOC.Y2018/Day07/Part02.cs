@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AOC.Y2018.Day07
@@ -12,14 +11,13 @@ namespace AOC.Y2018.Day07
     {
         private const int workers = 5;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day07);
-            //string[] input = General.GetInput();
+            string[] input = context.GetInputLines();
             List<KeyValuePair<char, char>> steps = ParseInput(input);
             int result = CalculateResult(steps);
 
-            General.PrintResult("Total work time is", result);
+            AOCUtils.PrintResult("Total work time is", result);
         }
 
         /// <summary>
@@ -87,7 +85,7 @@ namespace AOC.Y2018.Day07
                     workLeft[workerIndex] = key - 4;
                     stepsList.Remove(key);
 
-                    nextKey:;
+                nextKey:;
                 }
 
                 //Console.WriteLine("{0} | {1} | {2}", result, workTask[0], workTask[1]);

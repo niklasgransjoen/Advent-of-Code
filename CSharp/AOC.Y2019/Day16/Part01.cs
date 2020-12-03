@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-using System;
-using System.Linq;
+﻿using System;
 
 namespace AOC.Y2019.Day16
 {
@@ -12,9 +10,9 @@ namespace AOC.Y2019.Day16
     {
         private const int Iterations = 100;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string rawInput = General.ReadSingleLineInput(Day.Day16);
+            string rawInput = context.Input;
             byte[] input = ParseInput(rawInput);
             FFTTransform(input, Iterations);
 

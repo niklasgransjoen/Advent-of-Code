@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace AOC.Y2015.Day02
@@ -10,15 +9,15 @@ namespace AOC.Y2015.Day02
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day02);
+            string[] input = context.GetInputLines();
             Present[] presents = ParseInput(input);
 
             var wrapperArea = presents.Select(p => p.GetWrapperArea());
             int totalArea = wrapperArea.Sum();
 
-            General.PrintResult(totalArea);
+            AOCUtils.PrintResult(totalArea);
         }
 
         private static Present[] ParseInput(string[] input)

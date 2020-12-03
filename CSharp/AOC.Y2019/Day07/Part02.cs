@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day07.P02;
+﻿using AOC.Y2019.Day07.P02;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +11,10 @@ namespace AOC.Y2019.Day07
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day07);
-            int[] intcode = General.StringToInt(input);
+            string[] input = context.GetCSVInput();
+            int[] intcode = AOCUtils.StringToInt(input);
 
             try
             {

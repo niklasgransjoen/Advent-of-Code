@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,9 +19,9 @@ namespace AOC.Y2019.Day03
             Left,
         }
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day03);
+            string[] input = context.GetInputLines();
 
             // Create the line definitions.
             var line1 = ParseInput(input[0]);
@@ -65,7 +64,7 @@ namespace AOC.Y2019.Day03
             //Console.ReadKey();
 
             int result = FindIntersectionDistance(map, originX, originY, signature1 + signature2);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         /// <summary>

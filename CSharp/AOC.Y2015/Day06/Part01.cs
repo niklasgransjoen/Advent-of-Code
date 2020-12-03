@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2015.Day06
 {
@@ -16,16 +15,16 @@ namespace AOC.Y2015.Day06
             Toggle,
         }
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day06);
+            string[] input = context.GetInputLines();
             Instruction[] instructions = ParseInput(input);
 
             bool[,] lights = new bool[1000, 1000];
             InitializeLights(lights, instructions);
 
             int result = CalculateActiveLights(lights);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static Instruction[] ParseInput(string[] input)

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
@@ -35,9 +34,9 @@ namespace AOC.Y2018.Day10
         /// </summary>
         private const string resultFile = @".\result.txt";
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day10);
+            string[] input = context.GetInputLines();
             Light[] lights = ParseInput(input);
 
             MoveLights(lights);

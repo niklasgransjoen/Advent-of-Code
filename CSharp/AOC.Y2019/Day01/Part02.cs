@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AOC.Y2019.Day01
 {
@@ -9,14 +8,14 @@ namespace AOC.Y2019.Day01
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            int[] moduleMass = General.ReadIntegerInput(Day.Day01);
+            int[] moduleMass = context.GetIntegerInput();
 
             int[] fuelRequirements = CalculateFuelRequirements(moduleMass);
             int result = fuelRequirements.Sum();
 
-            General.PrintResult("The total sum of the fuel requirements is", result);
+            AOCUtils.PrintResult("The total sum of the fuel requirements is", result);
         }
 
         private static int[] CalculateFuelRequirements(int[] moduleMass)

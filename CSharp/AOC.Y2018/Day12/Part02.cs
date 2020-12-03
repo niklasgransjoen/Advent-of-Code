@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-
-namespace AOC.Y2018.Day12
+﻿namespace AOC.Y2018.Day12
 {
     /**
      * https://adventofcode.com/2018/day/12
@@ -25,13 +23,13 @@ namespace AOC.Y2018.Day12
 
         private const int RuleCount = 1 << 5;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
             // Allocate memory
             Flower[] state = new Flower[FlowerArrayAlloc];
             Flower[] newState = new Flower[FlowerArrayAlloc];
 
-            string[] input = General.ReadInput(Day.Day12);
+            string[] input = context.GetInputLines();
             ParseInput(input, state, out bool[] rules, out int flowerCount);
 
             // Run all generations.
@@ -53,7 +51,7 @@ namespace AOC.Y2018.Day12
                     result += state[i].value;
             }
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         /// <summary>

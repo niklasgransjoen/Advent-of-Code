@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2019.Day10
 {
@@ -11,12 +10,12 @@ namespace AOC.Y2019.Day10
     {
         private const char Asteroid = '#';
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day10);
+            string[] input = context.GetInputLines();
             int result = CalculateResult(input);
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static int CalculateResult(string[] input)

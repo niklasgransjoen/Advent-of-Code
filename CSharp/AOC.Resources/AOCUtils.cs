@@ -1,46 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 
-namespace AOC.Resources
+namespace AOC
 {
-    public static class General
+    public static class AOCUtils
     {
-        #region IO
-
-        private static string Filepath { get; set; }
-
-        public static void SetInput(string filepath)
-        {
-            Filepath = filepath;
-        }
-
-        public static string[] ReadInput(Day day)
-        {
-            string path = GetPath(day);
-            return File.ReadAllLines(path);
-        }
-
-        public static int[] ReadIntegerInput(Day day)
-        {
-            string[] input = ReadInput(day);
-            return StringToInt(input);
-        }
-
-        public static string ReadSingleLineInput(Day day)
-        {
-            string path = GetPath(day);
-            return File.ReadAllText(path);
-        }
-
-        public static string[] ReadCSVInput(Day day)
-        {
-            string input = ReadSingleLineInput(day);
-            return input.Split(',');
-        }
-
-        #endregion IO
-
         #region Type conversion
 
         public static int[] StringToInt(Span<string> values)
@@ -74,31 +38,27 @@ namespace AOC.Resources
         {
             Console.Write(caption);
             Console.WriteLine(": {0}", result);
-            Console.ReadKey();
         }
 
         public static void PrintResult<T>(ReadOnlySpan<char> caption, T result)
         {
             Console.Out.Write(caption);
             Console.WriteLine(": {0}", result);
-            Console.ReadKey();
         }
 
         public static void PrintError(string errorMessage)
         {
             WriteLine(errorMessage, ConsoleColor.DarkRed);
-            Console.ReadKey();
         }
 
         public static void PrintError(ReadOnlySpan<char> errorMessage)
         {
             WriteLine(errorMessage, ConsoleColor.DarkRed);
-            Console.ReadKey();
         }
 
         public static void Write(string value, ConsoleColor foreground)
         {
-            ConsoleColor oldForeground = Console.ForegroundColor;
+            var oldForeground = Console.ForegroundColor;
             Console.ForegroundColor = foreground;
 
             Console.Write(value);
@@ -108,7 +68,7 @@ namespace AOC.Resources
 
         public static void Write(ReadOnlySpan<char> value, ConsoleColor foreground)
         {
-            ConsoleColor oldForeground = Console.ForegroundColor;
+            var oldForeground = Console.ForegroundColor;
             Console.ForegroundColor = foreground;
 
             Console.Out.Write(value);
@@ -118,7 +78,7 @@ namespace AOC.Resources
 
         public static void Write<T>(T value, ConsoleColor foreground)
         {
-            ConsoleColor oldForeground = Console.ForegroundColor;
+            var oldForeground = Console.ForegroundColor;
             Console.ForegroundColor = foreground;
 
             Console.Write(value);
@@ -158,7 +118,7 @@ namespace AOC.Resources
 
         public static void StopTimer()
         {
-            Stopwatch sw = _stopwatch.Value;
+            var sw = _stopwatch.Value;
 
             sw.Stop();
             WriteLine("Timer stopped", ConsoleColor.DarkCyan);
@@ -166,14 +126,5 @@ namespace AOC.Resources
         }
 
         #endregion Debug
-
-        #region Helpers
-
-        private static string GetPath(Day day)
-        {
-            return Filepath + "\\" + day.ToString() + ".txt";
-        }
-
-        #endregion Helpers
     }
 }

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2018.Day03
 {
@@ -11,12 +10,12 @@ namespace AOC.Y2018.Day03
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day03);
+            string[] input = context.GetInputLines();
             int result = FindNonOverlappingClaim(input);
 
-            General.PrintResult("ID of the claim with no overlap", result);
+            AOCUtils.PrintResult("ID of the claim with no overlap", result);
         }
 
         /// <summary>

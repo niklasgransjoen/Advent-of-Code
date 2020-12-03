@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day12.P02;
+﻿using AOC.Y2019.Day12.P02;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +14,9 @@ namespace AOC.Y2019.Day12
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day12);
+            string[] input = context.GetInputLines();
             Moon[] moons = ParseInput(input);
             InitializeMoons(moons);
 
@@ -25,7 +24,7 @@ namespace AOC.Y2019.Day12
             int[] orbitSteps = CalculateOrbits(moons);
 
             long result = CalculateBackToOrigin(orbitSteps);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static Moon[] ParseInput(string[] input)

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,15 +11,15 @@ namespace AOC.Y2019.Day04
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day04);
+            string input = context.Input;
             ParseInput(input, out int lowerLimit, out int upperLimit);
 
             int[] passwords = FindValidPasswords(lowerLimit, upperLimit);
             int result = passwords.Length;
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static void ParseInput(string input, out int lowerLimit, out int upperlimit)

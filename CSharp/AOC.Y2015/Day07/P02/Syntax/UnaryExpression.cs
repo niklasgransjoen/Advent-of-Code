@@ -14,6 +14,5 @@
         public SyntaxToken Input { get; }
         public SyntaxToken ArrowToken { get; }
         public override SyntaxToken Output { get; }
-
     }
 }

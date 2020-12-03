@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2015.Day07.P02;
+﻿using AOC.Y2015.Day07.P02;
 using AOC.Y2015.Day07.P02.Binding;
 using AOC.Y2015.Day07.P02.Syntax;
 using System.Collections.Generic;
@@ -18,9 +17,9 @@ namespace AOC.Y2015.Day07
         private const string FirstSignal = "a";
         private const string SecondSignal = "b";
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day07);
+            string input = context.Input;
             var expressions = Parser.Parse(input);
             var boundExpressions = Binder.Bind(expressions);
 
@@ -35,7 +34,7 @@ namespace AOC.Y2015.Day07
             evaluator.ForceSignalValue(secondSignal, firstSignalValue);
 
             ushort result = evaluator.Evaluate(firstSignal);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static BoundExpression LocateSignal(IEnumerable<BoundExpression> expressions, string signalName)

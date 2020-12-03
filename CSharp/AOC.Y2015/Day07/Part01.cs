@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2015.Day07.P01;
+﻿using AOC.Y2015.Day07.P01;
 using AOC.Y2015.Day07.P01.Binding;
 using AOC.Y2015.Day07.P01.Syntax;
 using System.Linq;
@@ -16,23 +15,23 @@ namespace AOC.Y2015.Day07
     {
         private const string ResultSignal = "a";
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day07);
+            string input = context.Input;
             var expressions = Parser.Parse(input);
             var boundExpressions = Binder.Bind(expressions);
 
             BoundExpression? resultSignal = boundExpressions.SingleOrDefault(b => b.SignalName == ResultSignal);
             if (resultSignal is null)
             {
-                General.PrintError($"Signal with name '{ResultSignal}' does not exist.");
+                AOCUtils.PrintError($"Signal with name '{ResultSignal}' does not exist.");
                 return;
             }
 
             Evaluator evaluator = new Evaluator();
             ushort result = evaluator.Evaluate(resultSignal);
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
     }
 }

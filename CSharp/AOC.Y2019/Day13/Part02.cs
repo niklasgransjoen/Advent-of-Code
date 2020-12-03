@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day13.P02;
+﻿using AOC.Y2019.Day13.P02;
 using System;
 using System.Collections.Generic;
 
@@ -17,10 +16,10 @@ namespace AOC.Y2019.Day13
         private const int PaddleID = 3;
         private const int BallID = 4;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day13);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             // Trick game into believing it got two quarters.
             intcode[0] = 2;
@@ -34,16 +33,16 @@ namespace AOC.Y2019.Day13
                 IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, cabinet);
                 if (!interpreter.Execute())
                 {
-                    General.PrintError("Intcode interpreter returned before halting.");
+                    AOCUtils.PrintError("Intcode interpreter returned before halting.");
                     return;
                 }
 
                 Console.ResetColor();
                 Console.Clear();
 
-                General.WriteLine("Game over", ConsoleColor.DarkCyan);
-                General.WriteLine($"Final Player Score: {cabinet.PlayerScore:N0}", ConsoleColor.Magenta);
-                General.WriteLine("Press ENTER to play again", ConsoleColor.Green);
+                AOCUtils.WriteLine("Game over", ConsoleColor.DarkCyan);
+                AOCUtils.WriteLine($"Final Player Score: {cabinet.PlayerScore:N0}", ConsoleColor.Magenta);
+                AOCUtils.WriteLine("Press ENTER to play again", ConsoleColor.Green);
                 Console.ReadLine();
             }
         }
@@ -136,7 +135,7 @@ namespace AOC.Y2019.Day13
             public void DrawPlayerScore(long value)
             {
                 Console.SetCursorPosition(0, 0);
-                General.Write($"Player score: {value:N0}", ConsoleColor.Magenta);
+                AOCUtils.Write($"Player score: {value:N0}", ConsoleColor.Magenta);
             }
 
             public void DrawPixel(int x, int y, int tileID)

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AOC.Y2019.Day08
@@ -13,9 +12,9 @@ namespace AOC.Y2019.Day08
         private const int ImageWidth = 25;
         private const int ImageHeight = 6;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day08);
+            string input = context.Input;
             Layer[] layers = ParseInput(input);
 
             Layer minLayer = LocateLayerWithFewestZeroes(layers);
@@ -24,7 +23,7 @@ namespace AOC.Y2019.Day08
             int twos = minLayer.GetCharCount('2');
 
             int result = ones * twos;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static Layer[] ParseInput(string input)

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day15.P01;
+﻿using AOC.Y2019.Day15.P01;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,10 +8,10 @@ namespace AOC.Y2019.Day15
 {
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day15);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             var communicator = new Communicator();
             IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, communicator);
@@ -107,7 +106,7 @@ namespace AOC.Y2019.Day15
             {
                 if (!_locatedOxygen)
                 {
-                    General.Write("Found oxygen system!", ConsoleColor.Cyan);
+                    AOCUtils.Write("Found oxygen system!", ConsoleColor.Cyan);
                     _currentPath = Memory<Point>.Empty;
                     _locatedOxygen = true;
                 }
@@ -119,7 +118,7 @@ namespace AOC.Y2019.Day15
                     Point[] pathStartToEnd = AStar(_map, b => b <= 1, start, _oxygenSystem);
                     int steps = pathStartToEnd.Length - 1;
 
-                    General.Write($"Shortest path: {steps:N0} steps", ConsoleColor.Cyan);
+                    AOCUtils.Write($"Shortest path: {steps:N0} steps", ConsoleColor.Cyan);
                     Console.ReadLine();
                     Environment.Exit(0);
                 }

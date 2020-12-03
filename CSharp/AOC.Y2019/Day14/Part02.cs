@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,9 +14,9 @@ namespace AOC.Y2019.Day14
         private const string Fuel = "FUEL";
         private const long OreQuantity = 1_000_000_000_000;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day14);
+            string[] input = context.GetInputLines();
             NanoFactory factory = new NanoFactory(input);
 
             long remainingOre = OreQuantity;
@@ -43,7 +42,7 @@ namespace AOC.Y2019.Day14
             }
             while (true);
 
-            General.PrintResult("The maximum amount of fuel you can produce is", fuel);
+            AOCUtils.PrintResult("The maximum amount of fuel you can produce is", fuel);
         }
 
         private sealed class NanoFactory

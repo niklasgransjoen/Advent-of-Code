@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AOC.Y2018.Day05
 {
@@ -11,12 +9,12 @@ namespace AOC.Y2018.Day05
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day05);
+            string[] input = context.GetInputLines();
             int result = ReactInput(input[0]);
 
-            General.PrintResult("Smallest number of units are", result);
+            AOCUtils.PrintResult("Smallest number of units are", result);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day12.P01;
+﻿using AOC.Y2019.Day12.P01;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -14,15 +13,15 @@ namespace AOC.Y2019.Day12
     {
         private const long Iterations = 1000;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day12);
+            string[] input = context.GetInputLines();
             Moon[] moons = ParseInput(input);
             InitializeMoons(moons);
             SimulateOrbits(moons);
 
             int result = CalculateEnergy(moons);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static Moon[] ParseInput(string[] input)

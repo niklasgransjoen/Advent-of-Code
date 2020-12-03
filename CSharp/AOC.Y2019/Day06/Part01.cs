@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -14,14 +13,14 @@ namespace AOC.Y2019.Day06
         private const char Separator = ')';
         private const string RootName = "COM";
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day06);
+            string[] input = context.GetInputLines();
             Dictionary<string, string> childParentMap = CreateChildParentMap(input);
             Satellite satellite = CreateSatteliteMap(childParentMap, RootName);
 
             int result = satellite.GetOrbitCount(parents: 0);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         /// <summary>

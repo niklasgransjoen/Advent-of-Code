@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace AOC.Y2015.Day04
@@ -10,12 +9,12 @@ namespace AOC.Y2015.Day04
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string key = General.ReadSingleLineInput(Day.Day04);
+            string key = context.Input;
             int result = CalculateResult(key);
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static int CalculateResult(string key)

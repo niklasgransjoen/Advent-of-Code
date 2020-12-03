@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,15 +15,15 @@ namespace AOC.Y2018.Day06
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day06);
+            string[] input = context.GetInputLines();
             GetCoordinates(input, out int[] x, out int[] y);
             int[,] map = CreateMap(x, y);
             FilterMap(map);
             int result = FindLargestArea(map, input.Length);
 
-            General.PrintResult("The largest are that isn't infinite has an area of", result);
+            AOCUtils.PrintResult("The largest are that isn't infinite has an area of", result);
         }
 
         /// <summary>

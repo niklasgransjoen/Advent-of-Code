@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day11.P01;
+﻿using AOC.Y2019.Day11.P01;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +12,10 @@ namespace AOC.Y2019.Day11
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day11);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             Controller controller = new Controller();
             IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, controller);
@@ -26,17 +25,17 @@ namespace AOC.Y2019.Day11
             }
             catch (IntcodeEvaluationException ex)
             {
-                General.PrintError(ex.Message);
+                AOCUtils.PrintError(ex.Message);
                 return;
             }
 
             if (!interpreter.HasHalted)
             {
-                General.PrintError("Interpreter returned before halting.");
+                AOCUtils.PrintError("Interpreter returned before halting.");
                 return;
             }
 
-            General.PrintResult(controller.Result);
+            AOCUtils.PrintResult(controller.Result);
         }
 
         /// <summary>

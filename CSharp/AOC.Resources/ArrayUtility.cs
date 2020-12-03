@@ -1,4 +1,4 @@
-﻿namespace AOC.Resources
+﻿namespace AOC
 {
     public static class ArrayUtility
     {

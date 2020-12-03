@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +13,9 @@ namespace AOC.Y2019.Day08
         private const int ImageWidth = 25;
         private const int ImageHeight = 6;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day08);
+            string input = context.Input;
             Layer[] layers = ParseInput(input);
             byte[][] image = MergeLayers(layers);
 

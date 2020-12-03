@@ -4,6 +4,7 @@
     {
         // Tokens
         LiteralToken,
+
         IdentifierToken,
         ArrowToken,
         WhiteSpaceToken,
@@ -11,6 +12,7 @@
 
         // Keywords
         NotKeyword,
+
         OrKeyword,
         AndKeyword,
         RShiftKeyword,

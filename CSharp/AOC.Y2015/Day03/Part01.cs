@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AOC.Y2015.Day03
 {
@@ -9,13 +8,13 @@ namespace AOC.Y2015.Day03
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day03);
+            string input = context.Input;
             HashSet<Cell> visitedHouses = CalculateVisitPattern(input);
 
             int result = visitedHouses.Count;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static HashSet<Cell> CalculateVisitPattern(string input)

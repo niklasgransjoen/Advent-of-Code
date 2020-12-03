@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AOC.Y2018.Day08
@@ -10,15 +9,13 @@ namespace AOC.Y2018.Day08
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day08);
-            //string input = General.GetLineInput();
-            List<int> parsedInput = ParseInput(input);
+            List<int> parsedInput = ParseInput(context.Input);
             Node node = BuildTree(parsedInput);
             int result = node.SumMetadata();
 
-            General.PrintResult("The sum of all metadata is", result);
+            AOCUtils.PrintResult("The sum of all metadata is", result);
         }
 
         private static List<int> ParseInput(string input)

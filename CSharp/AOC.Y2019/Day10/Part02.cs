@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,16 +13,16 @@ namespace AOC.Y2019.Day10
         private const char Asteroid = '#';
         private const int VaporizedPosition = 200;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] rawInput = General.ReadInput(Day.Day10);
+            string[] rawInput = context.GetInputLines();
             char[][] input = ParseInput(rawInput);
 
             CalculateAsteroidPosition(input, out int asteroidX, out int asteroidY);
             CalculateVaporizedPosition(input, VaporizedPosition, asteroidX, asteroidY, out int x, out int y);
 
             int result = x * 100 + y;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static char[][] ParseInput(string[] input)

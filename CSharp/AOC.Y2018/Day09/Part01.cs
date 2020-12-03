@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,14 +14,14 @@ namespace AOC.Y2018.Day09
     /// </summary>
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string input = General.ReadSingleLineInput(Day.Day09);
+            string input = context.Input;
             ParseInput(input, out int players, out int maxPoints);
 
             int result = GetGameResult(players, maxPoints);
 
-            General.PrintResult("The winning Elf's score is", result);
+            AOCUtils.PrintResult("The winning Elf's score is", result);
         }
 
         private static void ParseInput(string input, out int players, out int maxPoints)

@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-
-namespace AOC.Y2018.Day05
+﻿namespace AOC.Y2018.Day05
 {
     /*
      * The polymer is formed by smaller units which, when triggered, react with each other such that two adjacent
@@ -15,14 +13,14 @@ namespace AOC.Y2018.Day05
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day05);
+            string[] input = context.GetInputLines();
             string output = ReactInput(input[0]);
 
             int result = output.Length;
 
-            General.PrintResult("Number of units reExecing are", result);
+            AOCUtils.PrintResult("Number of units reExecing are", result);
         }
 
         /// <summary>

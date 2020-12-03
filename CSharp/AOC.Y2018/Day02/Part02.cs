@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Text;
 
 namespace AOC.Y2018.Day02
@@ -13,13 +12,13 @@ namespace AOC.Y2018.Day02
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day02);
+            string[] input = context.GetInputLines();
             string[] correctIDs = FindCorrectIDs(input);
             string commonLetters = GetCommonLetters(correctIDs[0], correctIDs[1]);
 
-            General.PrintResult("The common letters of your correct IDs are", commonLetters);
+            AOCUtils.PrintResult("The common letters of your correct IDs are", commonLetters);
         }
 
         /// <summary>

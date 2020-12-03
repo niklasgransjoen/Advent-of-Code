@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day13.P01;
+﻿using AOC.Y2019.Day13.P01;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +11,20 @@ namespace AOC.Y2019.Day13
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day13);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             ArcadeCabinet cabinet = new ArcadeCabinet();
             IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, cabinet);
             if (!interpreter.Execute())
-                General.PrintError("Intcode interpreter returned before halting.");
+                AOCUtils.PrintError("Intcode interpreter returned before halting.");
             else
             {
                 const int blockID = 2;
                 long result = cabinet.Screen.GetTileCount(blockID);
-                General.PrintResult(result);
+                AOCUtils.PrintResult(result);
             }
         }
 

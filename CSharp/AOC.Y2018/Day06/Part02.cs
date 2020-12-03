@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Linq;
 
 namespace AOC.Y2018.Day06
@@ -12,14 +11,14 @@ namespace AOC.Y2018.Day06
     {
         private const int MaxDistance = 10000;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day06);
+            string[] input = context.GetInputLines();
             GetCoordinates(input, out int[] x, out int[] y);
             int[,] map = CreateMap(x, y);
             int result = FindRegionSize(map);
 
-            General.PrintResult("The size of the region is", result);
+            AOCUtils.PrintResult("The size of the region is", result);
         }
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace AOC.Y2018.Day06
 
                     map[i, j] = 1;
 
-                    nextCoordinate:;
+                nextCoordinate:;
                 }
 
             return map;

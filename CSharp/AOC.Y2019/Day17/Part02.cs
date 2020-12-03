@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using AOC.Y2019.Day17.P01;
+﻿using AOC.Y2019.Day17.P01;
 using System;
 using System.Collections.Generic;
 
@@ -14,10 +13,10 @@ namespace AOC.Y2019.Day17
             Robot,
         }
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day17);
-            long[] intcode = General.StringToLong(input);
+            string[] input = context.GetCSVInput();
+            long[] intcode = AOCUtils.StringToLong(input);
 
             Communicator communicator = new Communicator();
             IntcodeInterpreter interpreter = new IntcodeInterpreter(intcode, communicator);
@@ -25,7 +24,7 @@ namespace AOC.Y2019.Day17
 
             Tile[][] tiles = ParseCommunicatorOutput(communicator.Output);
             int result = CalculateResult(tiles);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static Tile[][] ParseCommunicatorOutput(List<char> output)

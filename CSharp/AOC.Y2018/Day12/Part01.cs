@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2018.Day12
 {
@@ -27,9 +26,9 @@ namespace AOC.Y2018.Day12
 
         private const int RuleCount = 1 << 5;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day12);
+            string[] input = context.GetInputLines();
             ParseInput(input, out bool[] state, out bool[] rules);
 
             // Run all generations.
@@ -52,7 +51,7 @@ namespace AOC.Y2018.Day12
                     result += i - Offset;
             }
 
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         /// <summary>

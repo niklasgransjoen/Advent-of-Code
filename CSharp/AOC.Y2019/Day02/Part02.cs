@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 
 namespace AOC.Y2019.Day02
 {
@@ -11,10 +10,10 @@ namespace AOC.Y2019.Day02
     {
         private const int ExpectedResult = 19690720;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadCSVInput(Day.Day02);
-            int[] inputIntcode = General.StringToInt(input);
+            string[] input = context.GetCSVInput();
+            int[] inputIntcode = AOCUtils.StringToInt(input);
             Span<int> intcode = new int[inputIntcode.Length];
 
             for (int i = 0; i < 100; i++)
@@ -31,7 +30,7 @@ namespace AOC.Y2019.Day02
 
                     if (intcode[0] == ExpectedResult)
                     {
-                        General.PrintResult((i * 100) + j);
+                        AOCUtils.PrintResult((i * 100) + j);
                         return;
                     }
                 }

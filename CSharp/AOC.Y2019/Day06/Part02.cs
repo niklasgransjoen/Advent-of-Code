@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,9 +16,9 @@ namespace AOC.Y2019.Day06
         private const string CurrentPosition = "YOU";
         private const string Santa = "SAN";
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day06);
+            string[] input = context.GetInputLines();
             Dictionary<string, string> childParentMap = CreateChildParentMap(input);
             Satellite satellite = CreateSatteliteMap(childParentMap, RootName);
 
@@ -36,7 +35,7 @@ namespace AOC.Y2019.Day06
 
             var shortestPath = FindShortestPath(currentPath.ToArray(), santaPath.ToArray());
             int result = shortestPath.Length;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         /// <summary>

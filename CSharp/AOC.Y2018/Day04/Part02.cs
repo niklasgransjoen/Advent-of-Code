@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace AOC.Y2018.Day04
@@ -14,9 +13,9 @@ namespace AOC.Y2018.Day04
 
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day04);
+            string[] input = context.GetInputLines();
             Array.Sort(input, StringComparer.InvariantCulture);
             ProcessInput(input, out string[] timestamps, out string[] events);
             CreateTimetable(timestamps, events, out List<bool[]> timetable, out List<int> ids);
@@ -27,7 +26,7 @@ namespace AOC.Y2018.Day04
 
             int result = minute * id;
 
-            General.PrintResult("The answer is", result);
+            AOCUtils.PrintResult("The answer is", result);
         }
 
         /// <summary>

@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -12,13 +10,13 @@ namespace AOC.Y2018.Day07
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day07);
+            string[] input = context.GetInputLines();
             List<KeyValuePair<char, char>> steps = ParseInput(input);
             string result = CalculateResult(steps);
 
-            General.PrintResult("The answer is", result);
+            AOCUtils.PrintResult("The answer is", result);
         }
 
         /// <summary>
@@ -74,7 +72,7 @@ namespace AOC.Y2018.Day07
                     stepsList.Remove(key);
                     break;
 
-                    nextKey:;
+                nextKey:;
                 }
             }
             while (stepsList.Any());

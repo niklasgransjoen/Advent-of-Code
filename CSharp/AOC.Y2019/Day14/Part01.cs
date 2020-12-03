@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,13 +14,13 @@ namespace AOC.Y2019.Day14
         private const string Fuel = "FUEL";
         private const int Quantity = 1;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day14);
+            string[] input = context.GetInputLines();
             NanoFactory factory = new NanoFactory(input);
 
             int result = factory.CalculateOreRequirement(Fuel, Quantity);
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private sealed class NanoFactory

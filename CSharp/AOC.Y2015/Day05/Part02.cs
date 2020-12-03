@@ -1,17 +1,16 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AOC.Y2015.Day05
 {
     public static class Part02
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day05);
+            string[] input = context.GetInputLines();
             string[] niceStrings = FindNiceStrings(input);
 
             int result = niceStrings.Length;
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
         }
 
         private static string[] FindNiceStrings(string[] input)

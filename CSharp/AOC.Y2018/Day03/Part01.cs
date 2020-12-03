@@ -1,6 +1,4 @@
-﻿using AOC.Resources;
-
-namespace AOC.Y2018.Day03
+﻿namespace AOC.Y2018.Day03
 {
     /*
      * The whole piece of fabric they're working on is a very large square - at least 1000 inches on each side.
@@ -17,12 +15,12 @@ namespace AOC.Y2018.Day03
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day03);
+            string[] input = context.GetInputLines();
             int result = FindOverlappingClaims(input);
 
-            General.PrintResult("Square inches of fabric claimed more than once", result);
+            AOCUtils.PrintResult("Square inches of fabric claimed more than once", result);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System;
+﻿using System;
 using System.Text;
 
 namespace AOC.Y2019.Day16
@@ -16,16 +15,16 @@ namespace AOC.Y2019.Day16
         private const int Iterations = 100;
         private const int MessageLength = 8;
 
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string rawInput = General.ReadSingleLineInput(Day.Day16);
+            string rawInput = context.Input;
             byte[] input = ParseInput(rawInput, InputRepeatFactor);
 
             int messageOffset = LocateMessage(rawInput);
             byte[] output = FFTTransform(input, messageOffset, MessageLength, Iterations);
 
             string result = MessageToString(output.AsSpan(messageOffset, MessageLength));
-            General.PrintResult(result);
+            AOCUtils.PrintResult(result);
 
             while (true)
             {
@@ -58,7 +57,7 @@ namespace AOC.Y2019.Day16
             int counter = 1;
             for (int j = initialPhase + messageLength - 1; j >= initialPhase; j--)
             {
-                General.WriteLine($"Started resolving message character {counter}/{messageLength}", ConsoleColor.Magenta);
+                AOCUtils.WriteLine($"Started resolving message character {counter}/{messageLength}", ConsoleColor.Magenta);
                 PhaseShift(values, iterations, j);
 
                 counter++;

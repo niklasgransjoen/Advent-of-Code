@@ -1,5 +1,4 @@
-﻿using AOC.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AOC.Y2018.Day02
@@ -17,12 +16,12 @@ namespace AOC.Y2018.Day02
 
     public static class Part01
     {
-        public static void Exec()
+        public static void Exec(AOCContext context)
         {
-            string[] input = General.ReadInput(Day.Day02);
+            string[] input = context.GetInputLines();
             int checksum = CalculateChecksum(input);
 
-            General.PrintResult("Your checksum is", checksum);
+            AOCUtils.PrintResult("Your checksum is", checksum);
         }
 
         /// <summary>
