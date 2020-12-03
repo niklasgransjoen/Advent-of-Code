@@ -15,7 +15,7 @@ namespace AOC.CLI
         [Option('d', "day", HelpText = "The day of the solution to run.", Required = true)]
         public int Day { get; set; }
 
-        [Option('2', "part2", HelpText = "Flag for indicating that it's the second part that should be run.", Default = false)]
+        [Option("part2", HelpText = "Flag for indicating that it's the second part that should be run.", Default = false)]
         public bool Part2 { get; set; }
     }
 
@@ -76,20 +76,24 @@ namespace AOC.CLI
 
         private static bool TryGetAssembly(Options o, [NotNullWhen(true)] out Assembly? assembly)
         {
-            assembly = o.Year switch
+            var proxy = o.Year switch
             {
-                2015 => typeof(Y2015.Proxy).Assembly,
-                2018 => typeof(Y2018.Proxy).Assembly,
-                2019 => typeof(Y2019.Proxy).Assembly,
+                2015 => typeof(Y2015.Proxy),
+                2018 => typeof(Y2018.Proxy),
+                2019 => typeof(Y2019.Proxy),
+                2020 => typeof(Y2020.Proxy),
                 _ => null,
             };
 
-            if (assembly is null)
+            if (proxy is null)
             {
                 AOCUtils.PrintError("Unsupported year.");
+
+                assembly = null;
                 return false;
             }
 
+            assembly = proxy.Assembly;
             return true;
         }
 
