@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 
 namespace AOC.CLI
 {
@@ -47,7 +48,19 @@ namespace AOC.CLI
             if (!TryCreateParameters(o, executeMethod, out var parameters))
                 return;
 
-            executeMethod.Invoke(null, parameters);
+            try
+            {
+                executeMethod.Invoke(null, parameters);
+            }
+            catch (TargetInvocationException ex)
+            {
+                if (ex.InnerException is not null)
+                {
+                    ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
+                }
+
+                throw;
+            }
         }
 
         private static bool TryGetSolution(Options o, [NotNullWhen(true)] out Type? solution)
