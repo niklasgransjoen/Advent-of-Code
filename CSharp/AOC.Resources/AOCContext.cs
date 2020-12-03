@@ -7,7 +7,7 @@ namespace AOC
         /// <summary>
         /// The input of the puzzle.
         /// </summary>
-        public string Input { get; init; }
+        public string Input { get; init; } = string.Empty;
     }
 
     public static class AOCContextExtensions
