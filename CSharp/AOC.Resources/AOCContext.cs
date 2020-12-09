@@ -32,6 +32,12 @@ namespace AOC
             return AOCUtils.StringToInt(input);
         }
 
+        public static long[] GetBigIntegerInput(this AOCContext context)
+        {
+            var input = context.GetInputLines();
+            return AOCUtils.StringToLong(input);
+        }
+
         public static string[] GetCSVInput(this AOCContext context)
         {
             if (context is null)
