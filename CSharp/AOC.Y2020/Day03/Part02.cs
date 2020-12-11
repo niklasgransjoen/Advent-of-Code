@@ -1,5 +1,9 @@
 ﻿namespace AOC.Y2020.Day03
 {
+    /**
+      * https://adventofcode.com/2020/day/3
+      */
+
     public static class Part02
     {
         private const char FreeCell = '.';

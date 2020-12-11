@@ -6,6 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace AOC.Y2020.Day04
 {
+    /**
+      * https://adventofcode.com/2020/day/4
+      */
+
     public static class Part02
     {
         private static readonly ImmutableDictionary<string, Func<string, bool>> _requiredFields = new Dictionary<string, Func<string, bool>> {

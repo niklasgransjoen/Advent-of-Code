@@ -2,6 +2,10 @@
 
 namespace AOC.Y2020.Day10
 {
+    /**
+      * https://adventofcode.com/2020/day/10
+      */
+
     public static class Part02
     {
         public static void Exec(AOCContext context)

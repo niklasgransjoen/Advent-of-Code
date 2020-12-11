@@ -6,6 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace AOC.Y2020.Day07
 {
+    /**
+      * https://adventofcode.com/2020/day/7
+      */
+
     public static class Part02
     {
         public static void Exec(AOCContext context)
